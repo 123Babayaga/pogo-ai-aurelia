@@ -49,4 +49,12 @@ export class OfficeVisitsDetail {
     console.log('Adding to dashboard...');
     // Add logic to add to dashboard
   }
+
+  closeExpanded() {
+    this.isVisible = false;
+    // You can also publish an event to notify parent components
+    this.eventAggregator.publish('expanded-view-closed');
+  }
+
+  
 }

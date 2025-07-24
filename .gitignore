@@ -21,7 +21,6 @@ Thumbs.db
 .idea
 .chrome
 /*.log
-.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -34,3 +33,4 @@ node_modules
 /scripts
 /src/environment.js
 /dist
+config.bat
