@@ -3,10 +3,12 @@ import { autoinject } from 'aurelia-framework';
 
 @autoinject
 export class OfficeVisitsExpanded {
-    static inject = [EventAggregator];
+  static inject = [EventAggregator];
+  
   constructor(eventAggregator) {
     this.eventAggregator = eventAggregator;
     this.chatMessages = [];
+    this.isVisible = true; // Add visibility control
     
     this.setupEventListeners();
   }
@@ -26,5 +28,21 @@ export class OfficeVisitsExpanded {
         });
       }, 1000);
     });
+
+    // Listen for close detail event from the detail component
+    this.eventAggregator.subscribe('close-detail', () => {
+      this.closeExpanded();
+    });
+
+    // Listen for close expanded view event
+    this.eventAggregator.subscribe('close-expanded-view', () => {
+      this.closeExpanded();
+    });
+  }
+
+  closeExpanded() {
+    this.isVisible = false;
+    // You can also publish an event to notify parent components
+    this.eventAggregator.publish('expanded-view-closed');
   }
 }

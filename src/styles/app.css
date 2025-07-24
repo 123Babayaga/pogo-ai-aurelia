@@ -43,24 +43,30 @@ body {
 }
 
 .actions-container {
-    padding: 0 20px;
-    flex: 1;
-}
+    display: flex;
+    flex-wrap: wrap;
 
+
+}
 .action-button {
-    width: 100%;
-    padding: 16px 20px;
-    margin-bottom: 12px;
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #E0E0E0;
     border-radius: 25px;
-    text-align: left;
+    padding: 5px 12px;
     font-size: 14px;
     color: #333;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: inline-block;
+    width: fit-content;
+    /* :white_check_mark: Shrinks to text width */
+    max-width: fit-content;
+    /* Optional: Prevent overflow */
+    align-self: flex-start;
+    /* :white_check_mark: Prevents stretching in column flex */
+    margin-left: 30px;
 }
-
 .action-button:hover {
     background: #f8f9fa;
     border-color: #d0d0d0;
@@ -897,4 +903,69 @@ body {
 
 .hidden {
     display: none;
+}
+
+/* Add these styles to your existing CSS */
+
+.expanded-container {
+    display: none;
+    position: fixed; /* Changed from default positioning */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000; /* Ensure it's above other content */
+    background: white; /* Add background to cover underlying content */
+}
+
+.expanded-container.show {
+    display: flex;
+}
+
+/* Ensure the sidebar, chat-section, and detail-section fill the full height */
+.sidebar, .chat-section, .detail-section {
+    height: 100vh;
+}
+
+/* Make sure chat history scrolls properly within the full height */
+.chat-history {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px); /* Account for chat input area */
+}
+
+/* Ensure chat input stays at bottom */
+.chat-input-container {
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    margin-top: auto;
+    min-height: 80px; /* Ensure consistent height */
+}
+
+/* Optional: Add a close button for the expanded view */
+.expanded-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    color: #666;
+    font-size: 18px;
+}
+
+.expanded-close-btn:hover {
+    background: #e0e0e0;
+    color: #333;
 }
