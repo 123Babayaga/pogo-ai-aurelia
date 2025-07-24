@@ -1,0 +1,24 @@
+<template>
+  <!-- Overlay Backdrop -->
+  <div class="chatbot-overlay" show.bind="isOpen" click.delegate="handleBackdropClick($event)">
+    <div class="chatbot-modal">
+      <!-- Close Button -->
+      <button class="chatbot-close-btn" click.delegate="closeOverlay()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <!-- Main Container -->
+      <div class="container" show.bind="showMainView">
+        <app-header></app-header>
+        <action-buttons show.bind="!showDetailView"></action-buttons>
+        <detail-view if.bind="showDetailView" detail-type.bind="currentDetail"></detail-view>
+        <chat-input></chat-input>
+      </div>
+
+      <!-- Expanded Office Visits View -->
+      <office-visits-expanded if.bind="showExpandedView"></office-visits-expanded>
+    </div>
+  </div>
+</template>
